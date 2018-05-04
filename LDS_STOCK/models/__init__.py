@@ -2,7 +2,7 @@
 #################################################################################
 #
 #    Odoo, Open Source Management Solution
-#    Copyright (C) 2018-today Ismael Marin <https://github.com/imarin>
+#    Copyright (C) 2018-today Ascetic Business Solution <www.asceticbs.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,33 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #################################################################################
-{
-    'name': "LDS Stock Control",
+from. import stock_location
 
-    'summary': """
-        Manage LDS stock, product and proyects easily.
-    """,
-
-    'author': "Ismael Marin",
-    'website': "https://github.com/imarin",
-    'license': 'AGPL-3',
-
-    'category': 'inventory',
-    'version': '0.1',
-	
-	'images': ['images/main_screenshot.png'],
-
-    # any module necessary for this one to work correctly
-    'depends': ['base','stock']
-
-    # always loaded
-    'data': [
-        'views/lds_stock_view.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [],
-
-    'installable': True,
-    'application': True,
-    'auto_install': False,
-}
