@@ -39,7 +39,7 @@
 
     # always loaded
     'data': [
-        'views/menu.xml',
+        'views/views.xml',
 
         
     ],
