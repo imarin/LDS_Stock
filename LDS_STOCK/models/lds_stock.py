@@ -25,6 +25,10 @@ class LdsLogisticLetter(models.Model):
     _inherit= ['stock.location', 'mail.thread']
     _order = "sequence, name, id"
 
+    def _get_default_state(self):
+        state = self.env.ref('lds_project_stock.lds_logistic_letter_state_active', raise_if_not_found=False)
+        return state and state.id or False
+
     name = fields.Char(string='Project Name', required=True, translate=True)
     description = fields.Text(translate=True)
     sequence = fields.Integer(default=1)
@@ -36,7 +40,7 @@ class LdsLogisticLetter(models.Model):
     tag_ids = fields.Many2many('lds.logistic.letter.tag', 'tag_id', 'Tags', copy=False)
     state_id = fields.Many2one('lds.logistic.letter.state', 'State', default=_get_default_state, 
         help='Current state of the vehicle', ondelete="set null")
-    product_location_ids = fields.One2many('stock.quant', 'location_id', string='Available Products')
+    #product_location_ids = fields.One2many('stock.quant', 'location_id', string='Available Products')
 
 class LdsLogisticLetterTag(models.Model):
     _name = 'lds.logistic.letter.tag'

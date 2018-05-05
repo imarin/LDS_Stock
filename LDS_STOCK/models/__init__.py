@@ -18,5 +18,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #################################################################################
-from . import lds_project_stock
+from . import lds_stock
 

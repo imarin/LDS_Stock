@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <form string="Logistic Letter">
                 <header>
-                    <!---<field name="state_id"  widget="statusbar" clickable="True" />-->
+                    <field name="state_id"  widget="statusbar" clickable="True" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -43,7 +43,7 @@
         <field name="name">lds.logistic.letter.tree</field>
         <field name="model">lds.logistic.letter</field>
         <field name="arch" type="xml">
-            <tree string="Vehicle" decoration-warning="contract_renewal_due_soon and not contract_renewal_overdue" decoration-danger="contract_renewal_overdue">
+            <tree string="Project">
                 <field name="active" invisible="1"/>
                 <field name="name" />
                 <field name="supervisor_id" />
@@ -56,7 +56,7 @@
         <field name="model">lds.logistic.letter</field>
         <field name="arch" type="xml">
             <search string="All Projects">
-                <field name="name" filter_domain="['|', ('name','ilike',self), ('license_plate','ilike',self)]" string="Vehicle"/>
+                <field name="name" string="Project"/>
                 <field name="supervisor_id"/>
                 <field name="tag_ids"/>
                 <field name="delivery_id"/>
@@ -83,31 +83,16 @@
                 <field name="id" />
                 <field name="tag_ids" />
 
-
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div class="oe_kanban_details">
                                 <strong class="o_kanban_record_title">
-                                    <field name="Name"/> : <field name="supervisor_id"/>
+                                    <field name="name"/> : <field name="supervisor_id"/>
                                 </strong>
                                 <div class="o_kanban_tags_section">
                                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                                 </div>
-                            </div>
-                            <div class="o_kanban_button">
-                                <a t-if="record.contract_count.raw_value>0" data-type="object"
-                                   data-name="return_action_to_open" href="#" class="oe_kanban_action oe_kanban_action_a"
-                                   data-context='{"xml_id":"fleet_vehicle_log_contract_action","search_default_open": 1}'>
-                                    <field name="contract_count"/>
-                                    Contract(s)
-                                    <span t-if="record.contract_renewal_due_soon.raw_value and !record.contract_renewal_overdue.raw_value"
-                                        class="fa fa-exclamation-triangle" t-att-style="'color:orange'">
-                                    </span>
-                                     <span t-if="record.contract_renewal_overdue.raw_value"
-                                        class="fa fa-exclamation-triangle" t-att-style="'color:red;'">
-                                    </span>
-                                </a>
                             </div>
                         </div>
                     </t>
@@ -121,7 +106,7 @@
         <field name="res_model">lds.logistic.letter</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="search_view_id" ref="logistic_letter_search"/>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
             Click to add a contact in your contacts directory.
@@ -153,9 +138,9 @@
     <!-- Top menu item -->
     <menuitem name="LDS"
     id="menu_lds"
-    sequence="10"
+    sequence="110"
     web_icon="lds_stock,static/description/icon.png"
-    groups="base.group_user"/>
+    groups="stock.group_stock_user"/>
 
     <menuitem id="projects_menu_lds"
     name="Projects"
