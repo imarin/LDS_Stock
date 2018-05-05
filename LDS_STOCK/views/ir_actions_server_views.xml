@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
-        
-        <record id="view_server_action_form_inherit_voip_sip_webrtc" model="ir.ui.view">
-            <field name="name">ir.actions.server.form.sms</field>
-            <field name="model">ir.actions.server</field>
-            <field name="inherit_id" ref="base.view_server_action_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//page[@name='code']" position="after">
-                    <page string="VOIP Call" autofocus="autofocus"
-                            attrs="{'invisible': [('state', '!=', 'voip_call')]}">
-                        <p attrs="{'invisible': [('model_id', '!=', False)]}">
-                            Please set the Base Model before setting the action details.
-                        </p>
-                        <group attrs="{'invisible': [('model_id', '=', False)]}">
-                            <field name="voip_call_template_id" attrs="{'required': [('state', '=', 'voip_call')]}"/>
-                            <p colspan="2" attrs="{'invisible': [('voip_call_template_id', '!=', False)]}">
-                                Choose a VOIP call template.
-                            </p>
-                        </group>
-                    </page>
-                </xpath>
-            </field>
-        </record>
-
-    </data>
+    <record id="action_contacts" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a contact in your contacts directory.
+          </p><p>
+            Odoo helps you easily track all activities related to
+            a customer: discussions, history of business opportunities,
+            documents, etc.
+          </p>
+        </field>
+    </record>
+    <record id="action_contacts_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="0"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="base.res_partner_kanban_view"/>
+        <field name="act_window_id" ref="action_contacts"/>
+    </record>
+    <record id="action_contacts_view_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="base.view_partner_tree"/>
+        <field name="act_window_id" ref="action_contacts"/>
+    </record>
+    <record id="action_contacts_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="base.view_partner_form"/>
+        <field name="act_window_id" ref="action_contacts"/>
+    </record>
 </openerp>

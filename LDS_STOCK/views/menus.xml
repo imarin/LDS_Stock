@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
         <!-- Top menu item -->
-        <menuitem name="LDS Stock"
-            id="menu_lds_stock_root"
-            groups="group_purchase_manager,group_purchase_user"
-            web_icon="LDS_STOCK,static/description/icon.png"
-            sequence="25"/>
-        
-        <menuitem id="menu_proyectos_lds" name="Proyectos LDS"
-            parent="menu_lds_stock_root" sequence="1" />
+        <menuitem name="LDS"
+        id="menu_lds"
+        sequence="10"
+        web_icon="lds_stock,static/description/icon.png"
+        groups="base.group_user"/>
+
+        <menuitem id="projects_menu_lds"
+        name="Projects"
+        action="action_contacts"
+        parent="menu_lds"
+        sequence="2"/>
     
 </odoo>
