@@ -40,6 +40,7 @@
     # always loaded
     'data': [
         'views/menus.xml'
+        
     ],
     # only loaded in demonstration mode
     'demo': [],
