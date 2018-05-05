@@ -20,12 +20,12 @@
 #################################################################################
 from odoo import api,fields,models,_
 
-class ldslogisticletter(models.Model):
+class LdsLogisticLetter(models.Model):
     _name = 'lds.logistic.letter'
     _inherit= ['stock.location', 'mail.thread']
     _order = "sequence, name, id"
 
-    name = fields.Char(string='Stage Name', required=True, translate=True)
+    name = fields.Char(string='Project Name', required=True, translate=True)
     description = fields.Text(translate=True)
     sequence = fields.Integer(default=1)
     active = fields.Boolean(default=True,
@@ -33,7 +33,24 @@ class ldslogisticletter(models.Model):
     sequence = fields.Integer(default=10, help="Gives the sequence order when displaying a list of Projects.")
     supervisor_id = fields.Many2one('res.partner', string='Project Manager')
     delivery_id = fields.Many2one('res.partner', string='Delivery Address')
+    tag_ids = fields.Many2many('lds.logistic.letter.tag', 'tag_id', 'Tags', copy=False)
+    state_id = fields.Many2one('lds.logistic.letter.state', 'State', default=_get_default_state, 
+        help='Current state of the vehicle', ondelete="set null")
     product_location_ids = fields.One2many('stock.quant', 'location_id', string='Available Products')
+
+class LdsLogisticLetterTag(models.Model):
+    _name = 'lds.logistic.letter.tag'
+
+    name = fields.Char(required=True, translate=True)
+    color = fields.Integer('Color Index', default=10)
+
+    _sql_constraints = [('name_uniq', 'unique (name)', "Tag name already exists !")]
     
-    
-   
+class LdsLogisticLetterState(models.Model):
+    _name = 'lds.logistic.letter.state'
+    _order = 'sequence asc'
+
+    name = fields.Char(required=True)
+    sequence = fields.Integer(help="Used to order the note stages")
+
+    _sql_constraints = [('fleet_state_name_unique', 'unique(name)', 'State name already exists')]
