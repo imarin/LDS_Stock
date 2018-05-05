@@ -20,10 +20,20 @@
 #################################################################################
 from odoo import api,fields,models,_
 
-class lds_project_stock(models.Model):
-    _inherit="stock.location"
+class ldslogisticletter(models.Model):
+    _name = 'lds.logistic.letter'
+    _inherit= ['stock.location', 'mail.thread']
+    _order = "sequence, name, id"
 
-    product_location_ids = fields.One2many('stock.quant','location_id',string='Available Products')
+    name = fields.Char(string='Stage Name', required=True, translate=True)
+    description = fields.Text(translate=True)
+    sequence = fields.Integer(default=1)
+    active = fields.Boolean(default=True,
+        help="If the active field is set to False, it will allow you to hide the project without removing it.")
+    sequence = fields.Integer(default=10, help="Gives the sequence order when displaying a list of Projects.")
+    supervisor_id = fields.Many2one('res.partner', string='Project Manager')
+    delivery_id = fields.Many2one('res.partner', string='Delivery Address')
+    product_location_ids = fields.One2many('stock.quant', 'location_id', string='Available Products')
     
     
    
