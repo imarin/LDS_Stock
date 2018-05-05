@@ -32,14 +32,14 @@
     'category': 'inventory',
     'version': '0.1',
 	
-	'images': ['images/main_screenshot.png'],
+	#'images': ['images/main_screenshot.png'],
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock']
+    'depends': ['base','stock'],
 
     # always loaded
     'data': [
-        'views/menu.xml',
+        'views/menus.xml'
     ],
     # only loaded in demonstration mode
     'demo': [],

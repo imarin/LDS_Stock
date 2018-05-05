@@ -20,7 +20,7 @@
 #################################################################################
 from odoo import api,fields,models,_
 
-class Location(models.Model):
+class lds_project_stock(models.Model):
     _inherit="stock.location"
 
     product_location_ids = fields.One2many('stock.quant','location_id',string='Available Products')
