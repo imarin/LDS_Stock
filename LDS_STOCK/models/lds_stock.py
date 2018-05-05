@@ -37,7 +37,7 @@ class LdsLogisticLetter(models.Model):
     sequence = fields.Integer(default=10, help="Gives the sequence order when displaying a list of Projects.")
     supervisor_id = fields.Many2one('res.partner', string='Project Manager')
     delivery_id = fields.Many2one('res.partner', string='Delivery Address')
-    tag_ids = fields.Many2many('lds.logistic.letter.tag', 'tag_id', 'Tags', copy=False)
+    tag_ids = fields.Many2many('lds.logistic.letter.tag', copy=False)
     state_id = fields.Many2one('lds.logistic.letter.state', 'State', default=_get_default_state, 
         help='Current state of the vehicle', ondelete="set null")
     #product_location_ids = fields.One2many('stock.quant', 'location_id', string='Available Products')

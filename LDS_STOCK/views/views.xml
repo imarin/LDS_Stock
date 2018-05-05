@@ -24,7 +24,6 @@
                     </div>
                     <group col="2" string="General Properties">
                         <group >
-                            <field name="name" />
                             <field name="delivery_id" />
                         </group>
                         <group >
@@ -79,9 +78,6 @@
                 <field name="name" />
                 <field name="supervisor_id" />
                 <field name="delivery_id" />
-                <field name="state_id" />
-                <field name="id" />
-                <field name="tag_ids" />
 
                 <templates>
                     <t t-name="kanban-box">
@@ -116,24 +112,6 @@
             documents, etc.
           </p>
         </field>
-    </record>
-    <record id="action_lds_logistic_letter_view_kanban" model="ir.actions.act_window.view">
-        <field name="sequence" eval="0"/>
-        <field name="view_mode">kanban</field>
-        <field name="view_id" ref="base.res_partner_kanban_view"/>
-        <field name="act_window_id" ref="action_lds_logistic_letter"/>
-    </record>
-    <record id="action_lds_logistic_letter_view_tree" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
-        <field name="view_mode">tree</field>
-        <field name="view_id" ref="base.view_partner_tree"/>
-        <field name="act_window_id" ref="action_lds_logistic_letter"/>
-    </record>
-    <record id="action_lds_logistic_letter_view_form" model="ir.actions.act_window.view">
-        <field name="sequence" eval="2"/>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="base.view_partner_form"/>
-        <field name="act_window_id" ref="action_lds_logistic_letter"/>
     </record>
     <!-- Top menu item -->
     <menuitem name="LDS"
