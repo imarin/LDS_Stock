@@ -39,7 +39,7 @@
 
     # always loaded
     'data': [
-        'views/lds_stock_view.xml',
+        'views/menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],
