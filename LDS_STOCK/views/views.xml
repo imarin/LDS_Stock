@@ -25,11 +25,27 @@
                     <group col="2" string="General Properties">
                         <group >
                             <field name="delivery_id" />
+                            <field name="location_id" string="Stock Location"/>
+                            <field name="notes" string="notes"/>
+                            <field name="lds_stock_id" string="Stock id"/>
                         </group>
                         <group >
                             <field name="supervisor_id" />
                         </group>
                     </group>
+                    <notebook string='Productos'>
+                        <page>
+                            <field name="product_location_ids">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="description"/>
+                                <field name="location_id"/>
+                                <field name="lds_reserved_quantity"/>
+                                <field name="pro_qty"/>
+                            </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
@@ -63,7 +79,7 @@
                 <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
                 <group expand="1" string="Group By">
                     <filter name="groupby_status" context="{'group_by' : 'state_id'}" string="Status"/>
-                    <filter name="groupby_model" context="{'group_by' : 'supervisor_id'}" string="Model"/>
+                    <filter name="groupby_model" context="{'group_by' : 'supervisor_id'}" string="Supervisor"/>
                 </group>
            </search>
         </field>

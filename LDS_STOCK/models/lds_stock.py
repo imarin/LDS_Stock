@@ -22,7 +22,7 @@ from odoo import api,fields,models,_
 
 class LdsLogisticLetter(models.Model):
     _name = 'lds.logistic.letter'
-    _inherit= ['stock.location', 'mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = "sequence, name, id"
 
     def _get_default_state(self):
@@ -31,7 +31,6 @@ class LdsLogisticLetter(models.Model):
 
     name = fields.Char(string='Project Name', required=True, translate=True)
     description = fields.Text(translate=True)
-    sequence = fields.Integer(default=1)
     active = fields.Boolean(default=True,
         help="If the active field is set to False, it will allow you to hide the project without removing it.")
     sequence = fields.Integer(default=10, help="Gives the sequence order when displaying a list of Projects.")
@@ -40,7 +39,45 @@ class LdsLogisticLetter(models.Model):
     tag_ids = fields.Many2many('lds.logistic.letter.tag', copy=False)
     state_id = fields.Many2one('lds.logistic.letter.state', 'State', default=_get_default_state, 
         help='Current state of the vehicle', ondelete="set null")
-    #product_location_ids = fields.One2many('stock.quant', 'location_id', string='Available Products')
+    notes = fields.Text('Terms and Conditions')
+    product_location_ids = fields.One2many('lds.stock.quant', 'logistic_letter_id', string='Available Products')
+    lds_stock_id = fields.Integer(string="Stock id")
+    location_id = fields.Many2one(
+        'stock.location', 'Location', index=True, ondelete='cascade',
+        help="The parent location that includes this location. Example : The 'Dispatch Zone' is the 'Gate 1' parent location.")
+
+    @api.onchange('location_id', 'product_location_ids')
+    def _locationStock(self):
+        self.lds_stock_id = self.location_id.id
+        self.product_location_ids.location_id = self.location_id
+
+class LdsStockQuant(models.Model):
+    _name = 'lds.stock.quant'
+    _description = 'Lds Quants'
+    _rec_name = 'product_id'
+
+    logistic_letter_id = fields.Many2one('lds.logistic.letter', string="Project")
+    product_id = fields.Many2one('product.product', string="Product")
+    description = fields.Text(string="Description")
+    location_id = fields.Many2one(
+        'stock.location', 'Location',
+        auto_join=True, ondelete='restrict', readonly=True, required=True store=True)
+    lds_reserved_quantity = fields.Integer(
+        'Lds Reserved Quantity',
+        default=0,
+        help='Quantity of reserved products in lds project, in the logistic letter', required=True)
+    pro_qty = fields.Integer(string='Quantity', default=0, required=True)
+
+class LdsStockQtyReq(models.Model):
+    _inherit = ['stock.quant']
+
+    lds_reserved_quantity = fields.Float(
+        'Lds Reserved Quantity',
+        default=0.0,
+        help='Quantity of reserved products in lds project, in the logistic letter',
+        readonly=True, required=True)
+    logistic_letter_id = fields.Many2one(
+        'lds.logistic.letter', 'Logistic letter', readonly=True)
 
 class LdsLogisticLetterTag(models.Model):
     _name = 'lds.logistic.letter.tag'
