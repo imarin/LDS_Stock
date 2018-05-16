@@ -46,10 +46,9 @@ class LdsLogisticLetter(models.Model):
         'stock.location', 'Location', index=True, ondelete='cascade',
         help="The parent location that includes this location. Example : The 'Dispatch Zone' is the 'Gate 1' parent location.")
 
-    @api.onchange('location_id', 'product_location_ids')
+    @api.onchange('location_id')
     def _locationStock(self):
         self.lds_stock_id = self.location_id.id
-        self.product_location_ids.location_id = self.location_id
 
 class LdsStockQuant(models.Model):
     _name = 'lds.stock.quant'
@@ -57,11 +56,10 @@ class LdsStockQuant(models.Model):
     _rec_name = 'product_id'
 
     logistic_letter_id = fields.Many2one('lds.logistic.letter', string="Project")
-    product_id = fields.Many2one('product.product', string="Product")
+    product_id = fields.Many2one('product.product', string="Product", required=True)
     description = fields.Text(string="Description")
-    location_id = fields.Many2one(
-        'stock.location', 'Location',
-        auto_join=True, ondelete='restrict', readonly=True, required=True store=True)
+    partner_id = fields.Many2one('res.partner', 'Owner', help="Owner of the location if not internal")
+    location_id = fields.Many2one('stock.location', 'Location')
     lds_reserved_quantity = fields.Integer(
         'Lds Reserved Quantity',
         default=0,
