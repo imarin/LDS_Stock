@@ -3,7 +3,7 @@ access_lds_logistic_letter_manager,lds.logistic.letter.manager,lds_stock.model_l
 access_lds_logistic_letter_state_manager,lds.logistic.letter.state.manager,lds_stock.model_lds_logistic_letter_state,group_lds_manager,1,1,1,1
 access_lds_logistic_letter.tag,lds.logistic.letter.tag.manager,lds_stock.model_lds_logistic_letter_tag,group_lds_manager,1,1,1,1
 access_lds_stock_quant_manager,lds.stock.quant.manager,lds_stock.model_lds_stock_quant,group_lds_manager,1,1,1,1
-access_lds_logistic_letter_user,lds.logistic.letter.user,lds_stock.model_lds_logistic_letter,,1,0,0,0
-access_lds_logistic_letter_state_user,lds.logistic.letter.state.user,lds_stock.model_lds_logistic_letter_state,,1,0,0,0
-access_lds_logistic_letter.tag_user,lds.logistic.letter.tag.user,lds_stock.model_lds_logistic_letter_tag,,1,0,0,0
-access_lds_stock_quant_manager_user,lds.stock.quant.user,lds_stock.model_lds_stock_quant,,1,0,0,0
+access_lds_logistic_letter_user,lds.logistic.letter.user,lds_stock.model_lds_logistic_letter,,1,0,1,0
+access_lds_logistic_letter_state_user,lds.logistic.letter.state.user,lds_stock.model_lds_logistic_letter_state,,1,0,1,0
+access_lds_logistic_letter.tag_user,lds.logistic.letter.tag.user,lds_stock.model_lds_logistic_letter_tag,,1,0,1,0
+access_lds_stock_quant_manager_user,lds.stock.quant.user,lds_stock.model_lds_stock_quant,,1,0,1,0
