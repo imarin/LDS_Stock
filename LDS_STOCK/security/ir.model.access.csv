@@ -1,9 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_lds_logistic_letter,lds.logistic.letter ,model_lds_logistic_letter ,group_lds_logistic_letter_user,1,1,1,1
-access_lds_logistic_letter_manager,lds.logistic.letter ,model_lds_logistic_letter ,group_lds_logistic_letter_manager,1,1,1,1
-access_lds_stock_quant ,lds.stock.quant ,model_lds_stock_quant ,group_lds_logistic_letter_user,1,1,1,1
-access_lds_stock_quant_manager,lds.stock.quant ,model_lds_stock_quant ,group_lds_logistic_letter_manager,1,1,1,1
-access_lds_logistic_letter_tag ,lds.logistic.letter.tag ,model_lds_logistic_letter_tag ,group_lds_logistic_letter_user,1,1,1,1
-access_lds_logistic_letter_tag_manager,lds.logistic.letter.tag ,model_lds_logistic_letter_tag ,group_lds_logistic_letter_manager,1,1,1,1
-access_lds_logistic_letter_state ,lds.logistic.letter.state ,model_lds_logistic_letter_state ,group_lds_logistic_letter_user,1,1,1,1
-access_lds_logistic_letter_state_manager,lds.logistic.letter.state ,model_lds_logistic_letter_state_manager ,group_lds_logistic_letter_user_manager,1,1,1,1
+access_lds_logistic_letter_manager,lds.logistic.letter.manager,lds_stock.model_lds_logistic_letter,group_lds_manager,1,1,1,1
+access_lds_logistic_letter_state_manager,lds.logistic.letter.state.manager,lds_stock.model_lds_logistic_letter_state,group_lds_manager,1,1,1,1
+access_lds_logistic_letter.tag,lds.logistic.letter.tag.manager,lds_stock.model_lds_logistic_letter_tag,group_lds_manager,1,1,1,1
+access_lds_stock_quant_manager,lds.stock.quant.manager,lds_stock.model_lds_stock_quant,group_lds_manager,1,1,1,1
+access_lds_logistic_letter_user,lds.logistic.letter.user,lds_stock.model_lds_logistic_letter,,1,0,0,0
+access_lds_logistic_letter_state_user,lds.logistic.letter.state.user,lds_stock.model_lds_logistic_letter_state,,1,0,0,0
+access_lds_logistic_letter.tag_user,lds.logistic.letter.tag.user,lds_stock.model_lds_logistic_letter_tag,,1,0,0,0
+access_lds_stock_quant_manager_user,lds.stock.quant.user,lds_stock.model_lds_stock_quant,,1,0,0,0

@@ -39,6 +39,7 @@
 
     # always loaded
     'data': [
+        'security/lds_stock_security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
 
